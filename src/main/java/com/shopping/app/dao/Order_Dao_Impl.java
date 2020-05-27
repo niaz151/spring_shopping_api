@@ -22,7 +22,7 @@ public class Order_Dao_Impl implements Order_Dao{
 
     @Override
     public Order getOrderById(int id) {
-        final Order[] output_arr = new Order[1];
+        List<Order> output_arr = new ArrayList<>();
         template.query("SELECT * FROM orders WHERE id=" + id , new RowMapper<Order>() {
             @Override
             public Order mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -33,11 +33,11 @@ public class Order_Dao_Impl implements Order_Dao{
                 order.setDate_time(resultSet.getDate("date"));
                 order.setStatus(resultSet.getString("status"));
                 order.setTotal(resultSet.getBigDecimal("total"));
-                output_arr[0] = order;
+                output_arr.add(order);
                 return order;
             }
         });
-        return output_arr[0];
+        return output_arr.get(0);
     }
 
     @Override

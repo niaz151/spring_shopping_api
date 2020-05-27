@@ -21,7 +21,7 @@ public class Customer_Dao_Impl implements Customer_Dao{
 
     @Override
     public Customer getCustomerById(int id) {
-        final Customer[] output_arr = new Customer[1];
+        List<Customer> output_arr = new ArrayList<>();
         template.query("SELECT * FROM customers WHERE id=" + id , new RowMapper<Customer>() {
             @Override
             public Customer mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -33,11 +33,11 @@ public class Customer_Dao_Impl implements Customer_Dao{
                 customer.setPostal_code(resultSet.getInt("postal_code"));
                 customer.setPhone_number(resultSet.getInt("phone"));
                 customer.setEmail(resultSet.getString("email"));
-                output_arr[0] = customer;
+                output_arr.add(customer);
                 return customer;
             }
         });
-        return output_arr[0];
+        return output_arr.get(0);
     }
 
     @Override

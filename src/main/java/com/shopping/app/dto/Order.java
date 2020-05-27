@@ -2,17 +2,20 @@ package com.shopping.app.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Order {
 
     int id;
     int customer_id;
     String payment_type;
-    LocalDateTime date_time;
+    Date date_time;
     String status;
     BigDecimal total;
 
-    public Order(int id, int customer_id, String payment_type, LocalDateTime date_time, String status, BigDecimal total) {
+    public Order(){}
+
+    public Order(int id, int customer_id, String payment_type, Date date_time, String status, BigDecimal total) {
         this.id = id;
         this.customer_id = customer_id;
         this.payment_type = payment_type;
@@ -37,11 +40,11 @@ public class Order {
         this.payment_type = payment_type;
     }
 
-    public LocalDateTime getDate_time() {
+    public Date getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(LocalDateTime date_time) {
+    public void setDate_time(Date date_time) {
         this.date_time = date_time;
     }
 

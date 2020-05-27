@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,12 @@ public class Category_Dao_Impl implements Category_Dao{
 
     @Override
     public void addCategory(Category category) {
-        category_db.add(category);
+        int id = category.getId();
+        String name = category.getName();
+        String description = category.getDescription();
+        String query = "INSERT INTO categories VALUES(?,?,?)";
+        Object[] params = new Object[] {id, name, description};
+        template.update(query, params);
     }
 
     @Override

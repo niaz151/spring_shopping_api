@@ -21,7 +21,7 @@ public class Category_Dao_Impl implements Category_Dao{
 
     List<Category> category_db = new ArrayList<>();
 
-    @Override
+    /*
     public void addCategory(Category category) {
         int id = category.getId();
         String name = category.getName();
@@ -30,6 +30,7 @@ public class Category_Dao_Impl implements Category_Dao{
         Object[] params = new Object[] {id, name, description};
         template.update(query, params);
     }
+    */
 
     @Override
     public List<Category> getAllCategories() {

@@ -10,17 +10,12 @@ import java.util.List;
 
 @RequestMapping("/api/v1/getAllCategories")
 @RestController
-public class Controller {
+public class CategoryController {
 
     Category_Dao category_dao;
 
-    public Controller(@Qualifier("Category_Dao")Category_Dao category_dao){
+    public CategoryController(@Qualifier("Category_Dao")Category_Dao category_dao){
         this.category_dao = category_dao;
-    }
-
-    @PostMapping
-    public void addCategory(@RequestBody Category category){
-        category_dao.addCategory(category);
     }
 
     @GetMapping

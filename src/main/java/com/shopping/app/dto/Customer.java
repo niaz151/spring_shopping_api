@@ -1,5 +1,7 @@
 package com.shopping.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Customer {
 
     int id;
@@ -10,7 +12,15 @@ public class Customer {
     int phone_number;
     String email;
 
-    public Customer(int id, String fname, String lname, String address, int postal_code, int phone_number, String email) {
+    public Customer(){}
+
+    public Customer(@JsonProperty int id,
+                    @JsonProperty String fname,
+                    @JsonProperty String lname,
+                    @JsonProperty String address,
+                    @JsonProperty int postal_code,
+                    @JsonProperty int phone_number,
+                    @JsonProperty String email) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;

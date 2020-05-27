@@ -8,7 +8,7 @@ import com.shopping.app.dao.*;
 
 import java.util.List;
 
-@RequestMapping("/api/v1/getAllCategories")
+@RequestMapping("/api/v1/categories/getAllCategories")
 @RestController
 public class CategoryController {
 

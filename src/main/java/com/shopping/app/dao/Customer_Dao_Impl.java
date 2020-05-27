@@ -42,6 +42,7 @@ public class Customer_Dao_Impl implements Customer_Dao{
 
     @Override
     public List<Customer> getAllCustomers() {
+        customer_db = new ArrayList<>();
         template.query("SELECT * FROM customers", new RowMapper<Customer>() {
             @Override
             public Customer mapRow(ResultSet resultSet, int i) throws SQLException {

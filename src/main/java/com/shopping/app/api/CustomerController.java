@@ -7,7 +7,7 @@ import com.shopping.app.dao.Customer_Dao;
 
 import java.util.List;
 
-@RequestMapping("/api/v1/person")
+@RequestMapping("/api/v1/customers")
 @RestController
 public class CustomerController {
 
@@ -17,7 +17,7 @@ public class CustomerController {
         this.customer_dao = customer_dao;
     }
 
-    @GetMapping
+    @GetMapping(path="/getAllCustomers")
     public List<Customer> getAllCustomers(){
         return customer_dao.getAllCustomers();
     }

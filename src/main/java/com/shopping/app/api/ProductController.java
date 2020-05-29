@@ -3,10 +3,7 @@ package com.shopping.app.api;
 import com.shopping.app.dao.Product_Dao;
 import com.shopping.app.dto.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,7 @@ public class ProductController {
     public Product getProductById(@PathVariable("id") int id){
         return product_dao.getProductById(id);
     }
+
 
     @GetMapping(path="/getProductsByCategoryId/{id}")
     public List<Product> getProductsByCategoryId(@PathVariable("id") int id){

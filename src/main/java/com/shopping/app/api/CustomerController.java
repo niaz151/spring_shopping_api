@@ -7,6 +7,7 @@ import com.shopping.app.dao.Customer_Dao;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/customers")
 @RestController
 public class CustomerController {

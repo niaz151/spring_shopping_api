@@ -7,6 +7,7 @@ import com.shopping.app.dto.Order;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/orders")
 @RestController
 public class OrderController {

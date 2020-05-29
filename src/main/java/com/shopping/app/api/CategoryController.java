@@ -8,6 +8,7 @@ import com.shopping.app.dao.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/categories/getAllCategories")
 @RestController
 public class CategoryController {
@@ -22,5 +23,6 @@ public class CategoryController {
     public List<Category> getAllCategories(){
         return category_dao.getAllCategories();
     }
+
 
 }

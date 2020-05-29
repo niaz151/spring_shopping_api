@@ -16,4 +16,8 @@ public interface Product_Dao {
     List<Product> sortProductsByPriceAscending();
 
     List<Product> sortProductsByPriceDescending();
+
+    List<Product> getProductsByCategoryAndSize(int category, int size);
+
+    List<Product> getProductsByCategoryAndSizeAndPrice(int category, int size, String sort_type);
 }

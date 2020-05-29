@@ -55,7 +55,7 @@ public class ProductController {
         return product_dao.getProductsByCategoryAndSize(cat_id, size);
     }
 
-    @GetMapping(path="/getProducts/category={category_id}/size={size}/price={sort_type}")
+    @GetMapping(path="/getProducts/category={category_id}/size={size}/sort={sort_type}")
     public List<Product> getProductsByCategoryAndSizeAndPrice(@PathVariable("category_id") int cat_id,
                                                 @PathVariable("size") int size,
                                                 @PathVariable("sort_type") String sort_type){

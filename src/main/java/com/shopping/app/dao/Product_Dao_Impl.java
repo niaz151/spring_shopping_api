@@ -40,8 +40,11 @@ public class Product_Dao_Impl implements Product_Dao {
 
     @Override
     public List<Product> getProductsByCategoryId(int id) {
+
+        String query = (id == 0)? "SELECT * FROM products": "SELECT * FROM products WHERE category_id=" + id;
+
         List<Product> output_arr = new ArrayList<>();
-        template.query("SELECT * FROM products WHERE category_id=" + id , new RowMapper<Product>() {
+        template.query(query , new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
                 Product product = new Product();
@@ -61,8 +64,11 @@ public class Product_Dao_Impl implements Product_Dao {
 
     @Override
     public List<Product> getProductsBySize(int size) {
+
+        String query = (size == 0)? "SELECT * FROM products ": "SELECT * FROM products WHERE size=" + size;
+
         List<Product> output_arr = new ArrayList<>();
-        template.query("SELECT * FROM products WHERE size =" + size, new RowMapper<Product>() {
+        template.query(query, new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
                 Product product = new Product();
@@ -145,7 +151,13 @@ public class Product_Dao_Impl implements Product_Dao {
 
     @Override
     public List<Product> getProductsByCategoryAndSize(int category, int size) {
+
+        // IF ALL PRODUCTS NEEDS TO BE FILTERED
         if(category == 0){ return getProductsBySize(size); }
+
+        // IF NO SIZE FILTER
+        if(size == 0){ return getProductsByCategoryId(category); }
+
         List<Product> output_arr = new ArrayList<>();
         template.query("SELECT * FROM products WHERE category_id=" + category + " AND size="+ size, new RowMapper<Product>() {
             @Override
@@ -170,19 +182,36 @@ public class Product_Dao_Impl implements Product_Dao {
 
         String query = "SELECT * FROM products WHERE category_id=" + category + " AND size="+ size + " ORDER BY price " + sort_type;
 
-        // IF NOT CATEGORY OR SIZE FILTER
-        if(category == 0 && size == 0) {
+        // IF NO CATEGORY OR SIZE FILTER AND THERE IS A SORT FILTER
+        if(category == 0 && size == 0 && !sort_type.equals("None")) {
             query = "SELECT * FROM products ORDER BY price " + sort_type;
         }
-        //IF ONLY CATEGORY FILTER
-        if(category != 0 && size == 0){
+
+        // IF NO CATEGORY OR SIZE FILTER AND THERE IS NO SORT FILTER
+        if(category == 0 && size == 0 && sort_type.equals("None")) {
+            query = "SELECT * FROM products";
+        }
+
+        //IF ONLY CATEGORY FILTER AND SORT FILTER
+        if(category != 0 && size == 0 && !sort_type.equals("None")){
             query = "SELECT * FROM products WHERE category_id=" + category + " ORDER BY price " + sort_type;
         }
-        // IF ONLY SIZE FILTER
-        if(category == 0 && size != 0){
+
+        //IF ONLY CATEGORY FILTER AND NO SORT FILTER
+        if(category != 0 && size == 0 && !sort_type.equals("None")){
+            query = "SELECT * FROM products WHERE category_id=" + category;
+        }
+
+        // IF ONLY SIZE FILTER AND SORT FILTER
+        if(category == 0 && size != 0 && !sort_type.equals("None")){
             query = "SELECT * FROM products WHERE size=" + size + " ORDER BY price " + sort_type;
         }
 
+        // IF ONLY SIZE FILTER AND NO SORT FILTER
+        if(category == 0 && size != 0 && sort_type.equals("None")){
+            query = "SELECT * FROM products WHERE size=" + size;
+        }
+        
         List<Product> output_arr = new ArrayList<>();
         template.query(query,  new RowMapper<Product>() {
             @Override

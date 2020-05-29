@@ -10,4 +10,10 @@ public interface Product_Dao {
     List<Product> getProductsByCategoryId(int id);
 
     List<Product> getAllProducts();
+
+    List<Product> getProductsBySize(int size);
+
+    List<Product> sortProductsByPriceAscending();
+
+    List<Product> sortProductsByPriceDescending();
 }

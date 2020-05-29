@@ -32,4 +32,19 @@ public class ProductController {
     public List<Product> getAllProducts(){
         return product_dao.getAllProducts();
     }
+
+    @GetMapping(path="/getProductsBySize/{size}")
+    public List<Product> getAllProducts(@PathVariable("size") int size){
+        return product_dao.getProductsBySize(size);
+    }
+
+    @GetMapping(path="/getProductsByPrice/ascending")
+    public List<Product> getProductsByPriceAsc(){
+        return product_dao.sortProductsByPriceAscending();
+    }
+
+    @GetMapping(path="/getProductsByPrice/descending")
+    public List<Product> getProductsByPriceDesc(){
+        return product_dao.sortProductsByPriceDescending();
+    }
 }

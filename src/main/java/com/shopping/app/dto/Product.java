@@ -10,16 +10,18 @@ public class Product {
     String description;
     String img_src;
     BigDecimal price;
+    int size;
 
     public Product(){}
 
-    public Product(int id, int category_id, String name, String description, String img_src, BigDecimal price) {
+    public Product(int id, int category_id, String name, String description, String img_src, BigDecimal price, int size) {
         this.id = id;
         this.category_id = category_id;
         this.name = name;
         this.description = description;
         this.img_src = img_src;
         this.price = price;
+        this.size = size;
     }
 
     public int getCategory_id() {
@@ -68,5 +70,13 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

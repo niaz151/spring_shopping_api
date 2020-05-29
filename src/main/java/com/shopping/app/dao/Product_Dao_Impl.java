@@ -23,14 +23,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query("SELECT * FROM products WHERE id=" + id , new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -47,14 +40,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query(query , new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -71,14 +57,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query(query, new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -92,14 +71,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query("SELECT * FROM products ORDER BY price ASC" , new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -113,14 +85,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query("SELECT * FROM products ORDER BY price DESC" , new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -134,14 +99,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query("SELECT * FROM products", new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -162,14 +120,7 @@ public class Product_Dao_Impl implements Product_Dao {
         template.query("SELECT * FROM products WHERE category_id=" + category + " AND size="+ size, new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
@@ -211,25 +162,32 @@ public class Product_Dao_Impl implements Product_Dao {
         if(category == 0 && size != 0 && sort_type.equals("None")){
             query = "SELECT * FROM products WHERE size=" + size;
         }
-        
+
         List<Product> output_arr = new ArrayList<>();
         template.query(query,  new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet resultSet, int i) throws SQLException {
-                Product product = new Product();
-                product.setId(resultSet.getInt("id"));
-                product.setCategory_id(resultSet.getInt("category_id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setImg_src(resultSet.getString("image"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setSize(resultSet.getInt("size"));
+                Product product = createProductObject(resultSet,i);
                 output_arr.add(product);
                 return product;
             }
         });
         return output_arr;
     }
+
+    public Product createProductObject(ResultSet resultSet, int i) throws SQLException {
+        Product product = new Product();
+        product.setId(resultSet.getInt("id"));
+        product.setCategory_id(resultSet.getInt("category_id"));
+        product.setName(resultSet.getString("name"));
+        product.setDescription(resultSet.getString("description"));
+        product.setImg_src(resultSet.getString("image"));
+        product.setPrice(resultSet.getBigDecimal("price"));
+        product.setSize(resultSet.getInt("size"));
+        return product;
+    }
+
+
 
 
 }

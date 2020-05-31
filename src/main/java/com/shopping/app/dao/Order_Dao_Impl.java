@@ -100,4 +100,9 @@ public class Order_Dao_Impl implements Order_Dao{
         return orders;
     }
 
+    @Override
+    public void placeOrder(Order order) {
+        order_db.add(order);
+    }
+
 }

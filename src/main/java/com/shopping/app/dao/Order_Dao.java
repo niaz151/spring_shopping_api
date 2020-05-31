@@ -12,4 +12,6 @@ public interface Order_Dao {
     List<Order> getOrdersByPaymentType(String payment_type);
 
     List<Order> getAllOrders();
+
+    void placeOrder(Order order);
 }

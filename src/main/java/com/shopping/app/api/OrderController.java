@@ -38,4 +38,9 @@ public class OrderController {
         return order_dao.getAllOrders();
     }
 
+    @GetMapping(path="/placeOrder")
+    public void placeOrder(){
+
+    }
+
 }
